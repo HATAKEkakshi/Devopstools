@@ -1,6 +1,9 @@
 #!/bin/bash
 DebLinuxtools(){
-    echo "Tool Installer--------------->"
+  n=2
+  while [ $n -eq 2 ];
+  do
+    echo "<------------Tool Installer--------------->"
     echo "Please select to install tools"
     echo "1.VirtualBox"
     echo "2.Vagrant"
@@ -10,6 +13,7 @@ DebLinuxtools(){
     echo "6.Awscli"
     echo "7.Vscode"
     echo "8.sublimetext"
+    echo "9.Exit"
     echo "<----------------------------->"
     read choice
     if [ $choice -eq 1 ];
@@ -124,8 +128,11 @@ DebLinuxtools(){
         then
             pass
         fi
+    elif [ $choice -eq 9 ];
+    then
+        exit
     fi
-
+  done
 }
 echo "<---------Welcome to Installer please select the platform----------->"
 echo "1.Debain Linux"
@@ -133,7 +140,7 @@ echo "2.Redhat type linux "
 echo "3.Macos"
 echo "<------------------------------------------------------------------->"
 read choice
-if [ $choice -eq 1];
+if [ $choice -eq 1 ];
 then
     DebLinuxtools
 fi
