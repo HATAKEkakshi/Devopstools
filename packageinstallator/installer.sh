@@ -1,5 +1,5 @@
 #!/bin/bash
-tools(){
+DebLinuxtools(){
     echo "Tool Installer--------------->"
     echo "Please select to install tools"
     echo "1.VirtualBox"
@@ -20,7 +20,8 @@ tools(){
         read fifthchoice
         if [ $fifthchoice -eq 1 ];
         then
-            choco install virtualbox --version=7.0.8 -y
+           sudo apt update
+           sudo apt install virtualbox
         elif [ $fifthchoice -eq 2 ];
         then
             pass
@@ -33,7 +34,8 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-             choco install vagrant --version=2.3.7 -y
+            curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+            sudo apt install ./vagrant_2.2.9_x86_64.deb
         elif [ $choice -eq 2 ];
         then
             pass
@@ -46,7 +48,7 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install git -y
+            apt install git -y
         elif [ $choice -eq 2 ];
         then
             pass
@@ -59,7 +61,7 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install corretto11jdk -y
+            sudo apt-get install openjdk-8-jdk
         elif [ $choice -eq 2 ];
         then
             pass
@@ -72,7 +74,7 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install maven -y
+           sudo apt-get install maven
         elif [ $choice -eq 2 ];
         then
             pass
@@ -85,7 +87,7 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install awscli -y
+            sudo apt-get install awscli
         elif [ $choice -eq 2 ];
         then
             pass
@@ -98,7 +100,10 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install vscode -y
+            echo "Please downloand .deb file of vscode from the website "
+            echo "Enter the .deb file path"
+            read path
+            sudo dpkg -i $path 
         elif [ $choice -eq 2 ];
         then
             pass
@@ -111,7 +116,10 @@ tools(){
         read choice
         if [ $choice -eq 1 ];
         then
-            choco install sublimetext3.app -y
+            sudo apt update
+            sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
+            curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - $ sudo add-apt-repository "deb https://download.sublimetext.com/ apt/stable/"
+            sudo apt install sublime-text
         elif [ $choice -eq 2 ];
         then
             pass
@@ -120,58 +128,12 @@ tools(){
 
 }
 echo "<---------Welcome to Installer please select the platform----------->"
-echo "1.Windows"
-echo "2.Macos"
-echo "3.Linux"
+echo "1.Debain Linux"
+echo "2.Redhat type linux "
+echo "3.Macos"
 echo "<------------------------------------------------------------------->"
 read choice
-if [ $choice -eq  1 ];
+if [ $choice -eq 1];
 then
-    echo " Please Select if chocolatey installed or not"
-    echo "1.Yes"
-    echo "2.No"
-    read secondchoice
-    if [ $secondchoice -eq 1 ];
-    then
-        tools
-    elif [ $secondchoice -eq 2 ];
-    then
-        echo "------------Checking the execution policy------------"
-        Get-ExecutionPolicy
-        echo "Please check the text showing on the screen is Allsigned"
-        echo "1.Allsigned"
-        echo "2.Not Allsigned"
-        read perchoice
-        if [ $perchoice -eq 1 ];
-        then
-            Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-        elif [ $perchoice -eq 2 ];
-        then
-            Set-ExecutionPolicy AllSigned
-            echo "If it works and the text written on the screen is allsigned press yes if not press 2"
-            echo "1.yes"
-            echo "2.No"
-            read thirdchoice
-            if [ $thirdchoice -eq 1 ];
-            then
-                Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-            elif [ $thirdchoice -eq 2 ];
-            then
-                Set-ExecutionPolicy Bypass -Scope Process
-                echo "Press 1 if it works and 2 if not"
-                echo "1.yes"
-                echo "2.No"
-                read fourthchoice
-                if [ $fourthchoice -eq 1 ];
-                then
-                    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-                elif [ $fourthchoice -eq 2 ];
-                then
-                    echo "I am sorry please check the error and try to solve it"
-                fi
-            fi
-
-        fi
-    tools
-    fi
+    DebLinuxtools
 fi
