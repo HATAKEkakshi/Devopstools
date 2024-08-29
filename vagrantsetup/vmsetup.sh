@@ -23,15 +23,15 @@ Double(){
 n=2
 while [ $n -eq 2 ];
 do
-echo "Welcome to vm installer"
-echo "Select Vm types "
-echo "1.Single"
-echo "2.Multiple"
-read choice 
-if [ $choice -eq 1 ];
-then
-    single
-elif [$choice -eq 2 ];
-then
-    Double
-fi
+    echo "Welcome to vm installer"
+    echo "Select Vm types "
+    echo "1.Single"
+    echo "2.Multiple"
+    read choice 
+    if [ $choice -eq 1 ];
+    then
+        single
+    elif [$choice -eq 2 ];
+    then
+        Double
+    fi
